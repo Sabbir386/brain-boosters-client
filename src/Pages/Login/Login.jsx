@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
-import { FcGoogle } from 'react-icons/fc';
-import { BsGithub } from 'react-icons/Bs';
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-import app from '../../../firebase/firebase.config';
+
+import { getAuth } from 'firebase/auth';
+import app from '../../Components/firebase/firebase.config';
 
 
 const Login = () => {
@@ -13,35 +12,8 @@ const Login = () => {
     const navlink = useNavigate();
 
 
-    const provider = new GoogleAuthProvider();
-
-    const gitHubProvider = new GithubAuthProvider();
-    const handleGoogleSignIn = () => {
-        signInWithPopup(auth, provider)
-            .then(result => {
-                const user = result.user;
-                navlink('/');
 
 
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
-    }
-
-    const handleGithubLogin = () => {
-        signInWithPopup(auth, gitHubProvider)
-            .then(result => {
-                const loggedInUser = result.user;
-                navigate('/');
-                console.log(loggedInUser);
-
-            })
-            .catch(error => {
-                console.log(error.message);
-            })
-
-    }
 
     const [loginError, setLoginError] = useState('');
 
@@ -52,9 +24,9 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/';
     const handleLogin = event => {
         event.preventDefault();
-        const htmlForm = event.target;
-        const email = htmlForm.email.value;
-        const password = htmlForm.password.value;
+        const Form = event.target;
+        const email = Form.email.value;
+        const password = Form.password.value;
         // validate
         setLoginError('');
 
@@ -101,13 +73,13 @@ const Login = () => {
                                             <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                         </div>
                                     </div>
-                                    <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">htmlForgot password?</a>
+                                    <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                                 </div>
                                 <button className='btn btn-primary p-3'>Login</button>
 
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet? <span className="font-medium text-primary-600 hover:underline dark:text-primary-600">
-                                        <Link to="/register">Register</Link>
+                                        <Link to="/registration">SignUp</Link>
                                     </span>
                                 </p>
                             </form>
@@ -116,14 +88,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                {/* login with google and github */}
-                <div className='text-center mb-5'>
-                    <h2 className='text-xl font-medium mb-3'>Login with :</h2>
-                    <button onClick={handleGoogleSignIn} className="btn-primary btn btn-xs sm:btn-sm md:btn-md lg:btn-lg mb-3"><FcGoogle className='me-3'></FcGoogle>  Sign in Google</button>
-                    <br />
-                    <button onClick={handleGithubLogin} className="btn-primary btn btn-xs sm:btn-sm md:btn-md lg:btn-lg mb-3"><BsGithub className='me-3'></BsGithub> Sign in Github</button>
 
-                </div>
             </section >
 
 

@@ -1,20 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
-const Register = () => {
+const Registration = () => {
     const { createUser } = useContext(AuthContext);
     const [error, setError] = useState('');
 
     const handleRegister = event => {
         event.preventDefault();
-        const htmlForm = event.target;
-        const name = htmlForm.name.value;
-        const photo = htmlForm.photo.value;
-        const email = htmlForm.email.value;
-        const password = htmlForm.password.value;
+        const Form = event.target;
+        const name = Form.name.value;
+        const photo = Form.photo.value;
+        const email = Form.email.value;
+        const password = Form.password.value;
         // console.log(name, photo, email, password);
         setError('');
 
@@ -107,4 +107,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Registration;
