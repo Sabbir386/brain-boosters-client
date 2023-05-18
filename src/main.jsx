@@ -14,6 +14,7 @@ import Registration from './Pages/Registration/Registraion';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './Layout/Main/Home';
+import Blog from './Components/Blogs/Blogs';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration></Registration>,
+
+      },
+      {
+        path: "/blogs",
+        element: <Blog></Blog>
 
       }
     ]
