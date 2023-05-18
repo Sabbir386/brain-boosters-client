@@ -13,12 +13,18 @@ import AuthProvider from './Components/AuthProvider/AuthProvider';
 import Registration from './Pages/Registration/Registraion';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Home from './Layout/Main/Home';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>
+
+      },
       {
         path: "/login",
         element: <Login></Login>,
