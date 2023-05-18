@@ -8,11 +8,6 @@ import app from '../../Components/firebase/firebase.config';
 
 
 const Login = () => {
-    const auth = getAuth(app);
-    const navlink = useNavigate();
-
-
-
 
 
     const [loginError, setLoginError] = useState('');
