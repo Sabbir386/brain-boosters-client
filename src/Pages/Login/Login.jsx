@@ -3,8 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 
-import { getAuth } from 'firebase/auth';
-import app from '../../Components/firebase/firebase.config';
+
 
 
 const Login = () => {

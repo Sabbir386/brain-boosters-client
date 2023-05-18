@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/brain.ico'
+import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 
 const Navigationbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
     return (
         <>
 
 
 
 
-            <div className="navbar bg-gray-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
+            <div className=" rounded navbar bg-gray-100 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,15 +43,31 @@ const Navigationbar = () => {
 
                     <Link className='mr-3' to="/">Home</Link>
                     <Link className='mr-3' to="/alltoys">All Toys</Link>
-                    <Link className='mr-3' to="/mytoys">My Toys</Link>
-                    <Link className='mr-3' to="/addtoy">Add A Toy</Link>
+                    {
+                        user ? <>
+                            <Link className='mr-3' to="/mytoys">My Toys</Link>
+                            <Link className='mr-3' to="/addtoy">Add A Toy</Link></> : ''
+                    }
                     <Link className='mr-3' to="/blogs">Blogs</Link>
 
                 </div>
                 <div className="navbar-end">
-                    <a className="btn btn-outline btn-primary">User Profile</a>
-                </div>
-            </div>
+                    {
+                        user ? <>
+                            <button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl">LogOut</button>
+
+                            <div className="relative group">
+                                <img className='w-12 h-12 rounded-full' src={user?.photoURL} alt="Avatar" />
+                                <div className="absolute hidden group-hover:block bg-gray-800 text-white rounded-lg px-1">
+                                    <p className="text-sm">{user?.displayName}</p>
+                                </div>
+                            </div>
+
+                        </>
+                            : <Link className='text-xl font-medium' to="/login">Login</Link>
+                    }
+                </div >
+            </div >
 
 
         </>
