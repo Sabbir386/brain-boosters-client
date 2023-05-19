@@ -7,7 +7,19 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 const AddToys = () => {
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        fetch("http://localhost:5000/addToy", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+            })
+    };
     return (
         <div className='bg-gray-200 text-center mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,14 +59,16 @@ const AddToys = () => {
 
                 />
                 <br />
-                <input
-                    className='p-2 m-2 rounded'
 
-                    {...register("sub-category", { required: true })}
-                    placeholder='Sub-Category'
-                    defaultValue=""
+                <select
+                    className='pr-16  m-2 py-2 ps-0 rounded'
+                    {...register("subCategory")}
+                >
+                    <option value="engineering-toy">engineering-toy</option>
+                    <option value="math-toy">math-toy</option>
 
-                />
+                    <option value="language-toy">language-toy</option>
+                </select>
                 <input
                     className='p-2 m-2 rounded'
 
@@ -75,7 +89,7 @@ const AddToys = () => {
                 <input
                     className='p-2 m-2 rounded'
 
-                    {...register("available-quantity", { required: true })}
+                    {...register("availableQuantity", { required: true })}
                     placeholder='Available quantity'
                     defaultValue=""
 
@@ -84,7 +98,7 @@ const AddToys = () => {
                 <input
                     className='p-2 m-2 rounded text-center'
 
-                    {...register("detail-description", { required: true })}
+                    {...register("detailDescription", { required: true })}
                     placeholder='Detail description'
                     defaultValue=""
 
