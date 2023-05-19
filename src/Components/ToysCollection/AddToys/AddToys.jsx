@@ -64,10 +64,10 @@ const AddToys = () => {
                     className='pr-16  m-2 py-2 ps-0 rounded'
                     {...register("subCategory")}
                 >
-                    <option value="engineering-toy">engineering-toy</option>
-                    <option value="math-toy">math-toy</option>
+                    <option value="EngineeringToys">EngineeringToys</option>
+                    <option value="MathToys">MathToys</option>
 
-                    <option value="language-toy">language-toy</option>
+                    <option value="LanguageToys">LanguageToys</option>
                 </select>
                 <input
                     className='p-2 m-2 rounded'

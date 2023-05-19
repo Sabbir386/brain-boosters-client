@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Marquee from "react-fast-marquee";
 
 const ShopByCategory = () => {
-    const [activeTab, setActiveTab] = useState('Math Toys');
+    const [subCategoryToys, setSubCategoryToys] = useState([]);
+    const [activeTab, setActiveTab] = useState('MathToys');
 
     const handleTabChange = (tabName) => {
         setActiveTab(tabName);
     };
+    useEffect(() => {
+        fetch(`http://localhost:5000/allToys/${activeTab}`)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                setSubCategoryToys(result);
+            })
+
+    }, [activeTab])
 
     return (
         <div className=' px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
@@ -17,23 +27,23 @@ const ShopByCategory = () => {
                 <div>
                     <div className="flex mb-4">
                         <button
-                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'Math Toys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
+                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'MathToys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
                                 }`}
-                            onClick={() => handleTabChange('Math Toys')}
+                            onClick={() => handleTabChange('MathToys')}
                         >
                             Math Toys
                         </button>
                         <button
-                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'Engineering Toys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
+                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'EngineeringToys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
                                 }`}
-                            onClick={() => handleTabChange('Engineering Toys')}
+                            onClick={() => handleTabChange('EngineeringToys')}
                         >
                             Engineering Toys
                         </button>
                         <button
-                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'Language Toys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
+                            className={`mr-4 px-4 py-2 rounded-lg ${activeTab === 'LanguageToys' ? 'bg-blue-500 text-white' : 'bg-gray-300'
                                 }`}
-                            onClick={() => handleTabChange('Language Toys')}
+                            onClick={() => handleTabChange('LanguageToys')}
                         >
                             Language Toys
                         </button>
@@ -41,15 +51,16 @@ const ShopByCategory = () => {
                     </div>
                     <div className="bg-gray-100 p-4">
                         {/* Content for the active tab */}
-                        {activeTab === 'Math Toys' && (
+                        {activeTab === 'MathToys' && (
                             <div>
+                                <p>{subCategoryToys?.length}</p>
                                 <Marquee className='text-cyan-500' speed={150}>
                                     <span className='text-red-500 mr-2'>Notice :</span>Math Toys will be Show when User Post Toys
                                 </Marquee>
                                 {/* Add content specific to Math Toys */}
                             </div>
                         )}
-                        {activeTab === 'Engineering Toys' && (
+                        {activeTab === 'EngineeringToys' && (
                             <div>
                                 <Marquee className='text-cyan-500' speed={150}>
                                     <span className='text-red-500 mr-2'>Notice :</span>Engineering Toys will be Show when User Post Toys
@@ -57,7 +68,7 @@ const ShopByCategory = () => {
                                 {/* Add content specific to Engineering Toys */}
                             </div>
                         )}
-                        {activeTab === 'Language Toys' && (
+                        {activeTab === 'LanguageToys' && (
                             <div>
                                 <Marquee className='text-cyan-500' speed={150}>
                                     <span className='text-red-500 mr-2'>Notice :</span>Language Toys will be Show when User Post Toys
