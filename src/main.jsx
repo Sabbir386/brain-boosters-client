@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './Layout/Main/Home';
 import Blog from './Components/Blogs/Blogs';
+import AddToys from './Components/ToysCollection/AddToys/AddToys';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blog></Blog>
+
+      },
+      {
+        path: "/addtoy",
+        element: <AddToys></AddToys>,
 
       }
     ]
