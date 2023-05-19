@@ -15,7 +15,7 @@ const ShopByCategory = () => {
         fetch(`http://localhost:5000/allToys/${activeTab}`)
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 setSubCategoryToys(result);
             })
 
@@ -102,39 +102,6 @@ const ShopByCategory = () => {
                         )}
                     </div>
                 </div>
-
-                {/* <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-2 gap-3'>
-                        <div className="card 1/2 bg-base-100 shadow-xl image-full">
-                            <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card 1/2 bg-base-100 shadow-xl image-full">
-                            <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </TabPanel>
-
-                <TabPanel>
-
-                </TabPanel>
-
-                <TabPanel>
-
-                </TabPanel> */}
             </Tabs>
 
         </div>
