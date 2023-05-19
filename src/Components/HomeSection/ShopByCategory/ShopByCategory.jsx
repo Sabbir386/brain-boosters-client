@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Marquee from "react-fast-marquee";
 
 const ShopByCategory = () => {
     const [activeTab, setActiveTab] = useState('Math Toys');
@@ -42,19 +43,25 @@ const ShopByCategory = () => {
                         {/* Content for the active tab */}
                         {activeTab === 'Math Toys' && (
                             <div>
-                                <h2>Math Toys</h2>
+                                <Marquee className='text-cyan-500' speed={150}>
+                                    <span className='text-red-500 mr-2'>Notice :</span>Math Toys will be Show when User Post Toys
+                                </Marquee>
                                 {/* Add content specific to Math Toys */}
                             </div>
                         )}
                         {activeTab === 'Engineering Toys' && (
                             <div>
-                                <h2>Engineering Toys</h2>
+                                <Marquee className='text-cyan-500' speed={150}>
+                                    <span className='text-red-500 mr-2'>Notice :</span>Engineering Toys will be Show when User Post Toys
+                                </Marquee>
                                 {/* Add content specific to Engineering Toys */}
                             </div>
                         )}
                         {activeTab === 'Language Toys' && (
                             <div>
-                                <h2>Language Toys</h2>
+                                <Marquee className='text-cyan-500' speed={150}>
+                                    <span className='text-red-500 mr-2'>Notice :</span>Language Toys will be Show when User Post Toys
+                                </Marquee>
                                 {/* Add content specific to Language Toys */}
                             </div>
                         )}
