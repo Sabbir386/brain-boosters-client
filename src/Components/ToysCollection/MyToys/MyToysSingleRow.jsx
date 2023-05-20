@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const MyToysSingleRow = ({ toy, handleDelete }) => {
@@ -36,7 +37,9 @@ const MyToysSingleRow = ({ toy, handleDelete }) => {
                 {availableQuantity}
             </td>
             <th>
-                <button onClick={() => handleUpdate(_id)} className="btn btn-success">Update</button>
+                <Link to={`/updatedToy/${_id}`}>
+                    <button className="btn btn-success">Update</button>
+                </Link>
             </th>
         </tr>
     );

@@ -1,27 +1,32 @@
-import React, { useContext } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-
-
-
-const AddToys = () => {
+import { useLoaderData, useParams } from 'react-router-dom';
+const UpdatedToy = () => {
     const { user } = useContext(AuthContext);
+    const [toySingleData, setToySingleData] = useState({});
+    const { id } = useParams();
+    // console.log(id);
+    // const singleUserData = useLoaderData();
+    // console.log('got data', singleUserData);
+    useEffect(() => {
+        fetch('http://localhost:5000/allToys')
+            .then(res => res.json())
+            .then(data => {
+
+                const reamining = data.filter(toyData => (toyData._id) == id);
+                setToySingleData(reamining);
+            })
+    }, [id]);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/addToy", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result);
-            })
+        console.log(data);
     };
+    console.log(toySingleData);
     return (
         <div className='bg-gray-200 text-center mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 {errors.exampleRequired && <span>This field is required</span>}
 
@@ -30,7 +35,7 @@ const AddToys = () => {
 
                     {...register("name", { required: true })}
                     placeholder='Toy Name'
-                    defaultValue=""
+                    defaultValue={toySingleData[0]?.name}
 
                 />
                 <input
@@ -38,7 +43,7 @@ const AddToys = () => {
 
                     {...register("photoUrl", { required: true })}
                     placeholder='Photo Url'
-                    defaultValue={user?.photoUrl}
+                    defaultValue={toySingleData[0]?.photoUrl}
 
                 />
                 <br />
@@ -74,7 +79,7 @@ const AddToys = () => {
 
                     {...register("price", { required: true })}
                     placeholder='Price'
-                    defaultValue=""
+                    defaultValue={toySingleData[0]?.price}
 
                 />
                 <br />
@@ -83,7 +88,7 @@ const AddToys = () => {
 
                     {...register("ratings", { required: true })}
                     placeholder='Ratings'
-                    defaultValue=""
+                    defaultValue={toySingleData[0]?.ratings}
 
                 />
                 <input
@@ -91,7 +96,7 @@ const AddToys = () => {
 
                     {...register("availableQuantity", { required: true })}
                     placeholder='Available quantity'
-                    defaultValue=""
+                    defaultValue={toySingleData[0]?.availableQuantity}
 
                 />
                 <br />
@@ -100,15 +105,15 @@ const AddToys = () => {
 
                     {...register("detailDescription", { required: true })}
                     placeholder='Detail description'
-                    defaultValue=""
+                    defaultValue={toySingleData[0]?.detailDescription}
 
                 />
                 <br />
-                <input className="btn btn-success btn-tiny btn-xs sm:btn-sm md:btn-md lg:btn-lg" value="Add Toy" type="submit" />
+                <input className="btn btn-success btn-tiny btn-xs sm:btn-sm md:btn-md lg:btn-lg" value="Update Toy" type="submit" />
             </form>
 
         </div>
     );
 };
 
-export default AddToys;
+export default UpdatedToy;
