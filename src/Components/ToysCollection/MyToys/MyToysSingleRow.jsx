@@ -1,20 +1,9 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const MyToysSingleRow = ({ toy }) => {
+const MyToysSingleRow = ({ toy, handleDelete }) => {
     const { _id, name, photoUrl, sellerName, sellerEmail, subCategory, price, ratings, availableQuantity, detailDescription } = toy || {}
-    const handleDelete = (id) => {
-        const ok = confirm('Are you sure Want to delete');
-        if (ok) {
-            fetch(`http://localhost:5000/allToys/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-                    toast('Deleted Successfully')
-                })
-        }
-    }
+
     return (
         <tr className='text-center'>
 
