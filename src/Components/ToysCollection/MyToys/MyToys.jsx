@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import MyToysSingleRow from './MyToysSingleRow';
 
 
 const MyToys = () => {
+    const [toys, setToys] = useState([]);
     const [searchBYText, setSearchByText] = useState("");
+    useEffect(() => {
+        fetch("http://localhost:5000/allToys")
+            .then(res => res.json())
+            .then(result => {
+                setToys(result);
+            })
+
+    }, [toys])
+
     const handleSearch = () => {
         // fetch(`http://localhost:5000/getJobsByText/${searchText}`)
         //   .then((res) => res.json())
@@ -15,6 +26,7 @@ const MyToys = () => {
     console.log(searchBYText);
     return (
         <>
+            <p>{toys.length}</p>
             <div className='mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
                 <h1 className="text-center text-3xl font-semibold mb-3">My Toys</h1>
                 <div className=" w-1/3 p-2 text-center bg-gray-200 mx-auto rounded-lg">
@@ -30,7 +42,7 @@ const MyToys = () => {
             <div className='mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
                 <div className="overflow-x-auto w-full">
                     <table className="table w-full">
-                        {/* head */}
+                        {/* table head */}
                         <thead>
                             <tr>
                                 <th>
@@ -45,36 +57,13 @@ const MyToys = () => {
                             </tr>
                         </thead>
                         <tbody>
+                            {
+                                toys.map(toy => <MyToysSingleRow
+                                    key={toy._id}
+                                    toy={toy}
+                                ></MyToysSingleRow>)
+                            }
 
-                            <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">Hart Hagerty</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                                </td>
-                                <td>Purple</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
-                                </th>
-                            </tr>
 
                         </tbody>
 
