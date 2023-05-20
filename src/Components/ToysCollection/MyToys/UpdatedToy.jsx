@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const UpdatedToy = () => {
     const { user } = useContext(AuthContext);
     const [toySingleData, setToySingleData] = useState({});
@@ -21,14 +22,37 @@ const UpdatedToy = () => {
     }, [id]);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
+        fetch(`http://localhost:5000/allToys/${toySingleData[0]?._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                if (data.modifiedCount > 0) {
+                    toast('Updated Successfully');
+                }
+            })
     };
-    console.log(toySingleData);
+    // console.log(toySingleData);
     return (
         <div className='bg-gray-200 text-center mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 {errors.exampleRequired && <span>This field is required</span>}
+                {/* <input
+                    className='p-2 m-2 rounded'
+
+                    {...register("id", { required: true })}
+                    placeholder='id'
+                    defaultValue={toySingleData[0]?._id}
+
+                />
+                <br /> */}
 
                 <input
                     className='p-2 m-2 rounded'
@@ -38,6 +62,7 @@ const UpdatedToy = () => {
                     defaultValue={toySingleData[0]?.name}
 
                 />
+
                 <input
                     className='p-2 m-2 rounded'
 
