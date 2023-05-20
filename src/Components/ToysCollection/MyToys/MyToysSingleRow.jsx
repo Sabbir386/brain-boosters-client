@@ -1,34 +1,53 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const MyToysSingleRow = () => {
+const MyToysSingleRow = ({ toy }) => {
+    const { _id, name, photoUrl, sellerName, sellerEmail, subCategory, price, ratings, availableQuantity, detailDescription } = toy || {}
+    const handleDelete = (id) => {
+        const ok = confirm('Are you sure Want to delete');
+        if (ok) {
+            fetch(`http://localhost:5000/allToys/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    toast('Deleted Successfully')
+                })
+        }
+    }
     return (
-        <tr>
+        <tr className='text-center'>
+
             <th>
-                <label>
-                    <input type="checkbox" className="checkbox" />
-                </label>
+                <button onClick={() => handleDelete(_id)} className="btn btn-square btn-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
             </th>
             <td>
-                <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                        </div>
-                    </div>
-                    <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
+
+                <div className="avatar">
+                    <div className="w-16 h-16 rounded-full">
+                        <img src={photoUrl} />
                     </div>
                 </div>
+
             </td>
             <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                {name}
+
             </td>
-            <td>Purple</td>
+            <td>
+                {sellerName}
+
+            </td>
+            <td>
+                {price}
+            </td>
+            <td >
+                {availableQuantity}
+            </td>
             <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+                <button onClick={() => handleUpdate(_id)} className="btn btn-success">Update</button>
             </th>
         </tr>
     );
