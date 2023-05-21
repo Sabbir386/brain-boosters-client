@@ -1,13 +1,15 @@
 
 import React, { useContext, useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { useLoaderData, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+
 const UpdatedToy = () => {
     const { user } = useContext(AuthContext);
     const [toySingleData, setToySingleData] = useState({});
     const { id } = useParams();
+    const navigate = useNavigate();
     // console.log(id);
     // const singleUserData = useLoaderData();
     // console.log('got data', singleUserData);
@@ -34,7 +36,13 @@ const UpdatedToy = () => {
             .then(data => {
 
                 if (data.modifiedCount > 0) {
-                    toast('Updated Successfully');
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'Updated Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                    navigate('/mytoys');
                 }
             })
     };

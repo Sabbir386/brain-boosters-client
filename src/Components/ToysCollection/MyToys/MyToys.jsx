@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
 import MyToysSingleRow from './MyToysSingleRow';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
@@ -17,22 +18,40 @@ const MyToys = () => {
 
     }, [])
     const handleDelete = (id) => {
-        const ok = confirm('Are you sure Want to delete');
-        if (ok) {
-            fetch(`http://localhost:5000/allToys/${id}`, {
-                method: 'DELETE',
-            })
-                .then(res => res.json())
-                .then(data => {
-
-
-                    if (data.deletedCount > 0) {
-                        const reamaining = selectedtoys.filter(toy => toy._id != id)
-                        setSelectedToys(reamaining)
-                        toast('Deleted Successfully')
-                    }
+        // const ok = confirm('Are you sure Want to delete');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/allToys/${id}`, {
+                    method: 'DELETE',
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+
+
+                        if (data.deletedCount > 0) {
+                            const reamaining = selectedtoys.filter(toy => toy._id != id)
+                            setSelectedToys(reamaining)
+                            Swal.fire({
+                                title: 'success!',
+                                text: 'Deleted Successfully',
+                                icon: 'success',
+                                confirmButtonText: 'Cool'
+                            })
+                        }
+                    })
+            }
+        })
+
+
+
     }
 
 
