@@ -3,8 +3,10 @@ import Swal from 'sweetalert2'
 import MyToysSingleRow from './MyToysSingleRow';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import useTitle from '../../hooks/useTitle';
 
 const MyToys = () => {
+    useTitle('MyToys')
     const [selectedtoys, setSelectedToys] = useState([]);
     const { user, toys } = useContext(AuthContext);
     // const [searchBYText, setSearchByText] = useState("");

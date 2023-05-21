@@ -4,9 +4,11 @@ import Swal from 'sweetalert2'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const UpdatedToy = () => {
     const { user } = useContext(AuthContext);
+    useTitle('Update')
     const [toySingleData, setToySingleData] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();

@@ -1,23 +1,14 @@
 import React, { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
+import useTitle from '../../hooks/useTitle';
 const Gallery = () => {
     useEffect(() => {
         Aos.init({ duration: 3000 })
     }, [])
-    return (
-        // <div className=' px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
-        //     <div className="hero min-h-screen" style={{ backgroundImage: `url("https://img.freepik.com/premium-photo/colorful-wooden-toy-building-blocks_155165-168.jpg?w=740")` }}>
-        //         <div className="hero-overlay bg-opacity-60"></div>
-        //         <div className="hero-content text-center text-neutral-content">
-        //             <div className="max-w-md" data-aos='fade-right'>
-        //                 <h1 className="mb-5 text-xl font-bold">Educational Toys Center</h1>
-        //                 <p className="mb-5 text-normal font-medium">Educational toys are objects of play, generally designed for children, which are expected to stimulate learning. They are often intended to meet an educational purpose such as helping a child develop</p>
-        //             </div>
-        //         </div>
-        //     </div>
 
-        // </div>
+    return (
+
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="-m-1 flex flex-wrap md:-m-2">
                 <div className="flex w-1/2 flex-wrap">
@@ -27,7 +18,7 @@ const Gallery = () => {
                             className="block h-full w-full rounded-lg object-cover object-center"
                             src="https://img.freepik.com/premium-vector/girl-counting-numbers-board_1308-14794.jpg?w=740" />
                     </div>
-                    <div className="w-1/2 p-1 md:p-2" data-aos='fade-bottom'>
+                    <div className="w-1/2 p-1 md:p-2" data-aos='fade-up'>
                         <img
                             alt="gallery"
                             className="block h-full w-full rounded-lg object-cover object-center"
@@ -37,7 +28,7 @@ const Gallery = () => {
                         <img
                             alt="gallery"
                             className="block h-full w-full rounded-lg object-cover object-center"
-                            src="https://img.freepik.com/free-vector/toys-wooden-shelves_1308-71082.jpg?w=740&t=st=1684668783~exp=1684669383~hmac=7947186ceae3e2c0fcdeb819414cdd2bed1cafd28eb15de2e0849bc69a7250dd" />
+                            src="https://img.freepik.com/free-vector/english-prepositions-collection-with-dog_52683-53983.jpg?w=740&t=st=1684669358~exp=1684669958~hmac=70677a1b3b3b8e16f1039ff220a26e869e246e85304d7de17502c3172ffbe8c7" />
                     </div>
                 </div>
                 <div className="flex w-1/2 flex-wrap">

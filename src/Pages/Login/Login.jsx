@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
+import useTitle from '../../Components/hooks/useTitle';
 
 
 
 
 const Login = () => {
+    useTitle('Login');
 
 
     const [loginError, setLoginError] = useState('');

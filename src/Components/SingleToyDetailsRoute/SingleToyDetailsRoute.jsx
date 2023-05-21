@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import useTitle from '../hooks/useTitle';
 
 const SingleToyDetailsRoute = () => {
     const { id } = useParams();
@@ -13,6 +14,7 @@ const SingleToyDetailsRoute = () => {
                 setDetailsToy(reamining);
             })
     }, [id]);
+    useTitle('Details')
     return (
         <div className='mt-3 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 '>
             <div className="card w-3/4 bg-base-100 shadow-xl mx-auto">
