@@ -31,6 +31,13 @@ const MyToysSingleRow = ({ toy, handleDelete }) => {
 
             </td>
             <td>
+                <Link to={`/singleToyDetailsRoutes/${_id}`}>
+                    <button className="btn btn-ghost">View Details</button>
+                </Link>
+
+            </td>
+
+            <td>
                 {price}
             </td>
             <td >
