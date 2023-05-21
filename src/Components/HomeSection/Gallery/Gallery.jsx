@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
-import useTitle from '../../hooks/useTitle';
 const Gallery = () => {
     useEffect(() => {
         Aos.init({ duration: 3000 })

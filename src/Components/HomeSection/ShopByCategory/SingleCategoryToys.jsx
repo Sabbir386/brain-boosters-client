@@ -17,7 +17,7 @@ const SingleCategoryToys = ({ toys }) => {
 
     return (
         <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure className='w-1/2'><img src={photoUrl} alt="Album" /></figure>
+            <figure className='lg:w-1/2'><img src={photoUrl} alt="Album" /></figure>
             <div className="card-body">
                 <p className="text-xl font-semibold">{name}</p>
                 <p className="text-xl font-normal">Price : {price}</p>

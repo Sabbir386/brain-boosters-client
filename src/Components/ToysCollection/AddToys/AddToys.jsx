@@ -11,7 +11,7 @@ const AddToys = () => {
     useTitle('AddToy')
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/addToy", {
+        fetch("https://brain-boosters-server-side.vercel.app/addToy", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

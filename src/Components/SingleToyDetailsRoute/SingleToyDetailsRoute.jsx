@@ -6,7 +6,7 @@ const SingleToyDetailsRoute = () => {
     const { id } = useParams();
     const [detailsToy, setDetailsToy] = useState({});
     useEffect(() => {
-        fetch('http://localhost:5000/allToys')
+        fetch('https://brain-boosters-server-side.vercel.app/allToys')
             .then(res => res.json())
             .then(data => {
 

@@ -16,7 +16,7 @@ const UpdatedToy = () => {
     // const singleUserData = useLoaderData();
     // console.log('got data', singleUserData);
     useEffect(() => {
-        fetch('http://localhost:5000/allToys')
+        fetch('https://brain-boosters-server-side.vercel.app/allToys')
             .then(res => res.json())
             .then(data => {
 
@@ -26,7 +26,7 @@ const UpdatedToy = () => {
     }, [id]);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        fetch(`http://localhost:5000/allToys/${toySingleData[0]?._id}`, {
+        fetch(`https://brain-boosters-server-side.vercel.app/allToys/${toySingleData[0]?._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

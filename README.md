@@ -1,7 +1,7 @@
 ## Features
 
 
- Live Site : https://the-master-chef.web.app/
+ Live Site : https://brain-boosters-project.web.app/
 
 - **Front-end Technology:** React Js. 
 - **Backend-end Technology:** MongoDb,express server. 

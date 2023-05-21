@@ -11,7 +11,7 @@ const MyToys = () => {
     const { user, toys } = useContext(AuthContext);
     // const [searchBYText, setSearchByText] = useState("");
     useEffect(() => {
-        fetch("http://localhost:5000/allToys")
+        fetch("https://brain-boosters-server-side.vercel.app/allToys")
             .then(res => res.json())
             .then(data => {
                 const useradded = data.filter(singleUser => (singleUser.sellerEmail) == user.email)
@@ -31,7 +31,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/allToys/${id}`, {
+                fetch(`https://brain-boosters-server-side.vercel.app/allToys/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

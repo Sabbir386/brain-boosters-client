@@ -12,7 +12,7 @@ const ShopByCategory = () => {
         setActiveTab(tabName);
     };
     useEffect(() => {
-        fetch(`http://localhost:5000/allToys/${activeTab}`)
+        fetch(`https://brain-boosters-server-side.vercel.app/allToys/${activeTab}`)
             .then(res => res.json())
             .then(result => {
                 // console.log(result);

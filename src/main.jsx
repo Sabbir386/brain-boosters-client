@@ -65,13 +65,13 @@ const router = createBrowserRouter([
       {
         path: "/singleToyDetailsRoutes/:id",
         element: <PrivateRoute><SingleToyDetailsRoute></SingleToyDetailsRoute></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/allToys/${params.id}`)
+        loader: ({ params }) => fetch(`https://brain-boosters-server-side.vercel.app/allToys/${params.id}`)
 
       },
       {
         path: "/updatedToy/:id",
         element: <PrivateRoute><UpdatedToy></UpdatedToy></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/allToys/${params.id}`)
+        loader: ({ params }) => fetch(`https://brain-boosters-server-side.vercel.app/allToys/${params.id}`)
 
       }
     ]
